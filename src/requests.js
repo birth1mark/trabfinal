@@ -35,7 +35,7 @@ const requests = {
   },
   createUser: async (user) => {
     console.log(user);
-    console.log(`${url}conta/registar`, "POST", user);
+    // console.log(`${url}conta/registar`, "POST", user);
     return makeRequest(`${url}conta/registar`, "POST", user);
   },
   updateUser: async (id, user) => {

@@ -14,14 +14,9 @@ const CriarUtilizador = () => {
     //https://jsonplaceholder.typicode.com devolve apenas um id
     const result = await createUser(novoUtilizador);
     if (result) {
-      const newUser = { id: result.id, ...novoUtilizador };
+      console.log(result.token);
+      sessionStorage.setItem("Resposta_Utilizador",JSON.stringify(result));
 
-      console.log(newUser);
-
-      setUsers([...users, newUser]);
-      setNome("");
-      setPassword("");
-      setUsername("");
     }
   };
   return (
