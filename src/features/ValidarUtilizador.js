@@ -10,7 +10,6 @@ const ValidarUtilizador = () => {
 
   const handleAdicionaUtilizador = async () => {
     const validarUtilizador = {password, username };
-    //https://jsonplaceholder.typicode.com devolve apenas um id
     const result = await validateUser(validarUtilizador);
     if (result) {
       console.log(result.token);

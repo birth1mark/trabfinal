@@ -45,7 +45,7 @@ const CriarUtilizador = () => {
         }}
       />
       <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button>
-      {/* <Button onClick={handleAdicionaUtilizador} variant="outline-primary">Adiciona</Button>{' '} */}
+       <Button onClick={handleAdicionaUtilizador} variant="outline-primary">Adiciona</Button>{' '}
     </>
   );
 };
