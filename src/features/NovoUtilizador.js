@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 import { useContext, useState } from "react";
 import { UsersContext } from "../user-context";
 import requests from "../requests";
@@ -44,6 +45,7 @@ const CriarUtilizador = () => {
         }}
       />
       <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button>
+      {/* <Button onClick={handleAdicionaUtilizador} variant="outline-primary">Adiciona</Button>{' '} */}
     </>
   );
 };
