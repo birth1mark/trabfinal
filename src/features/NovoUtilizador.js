@@ -12,7 +12,7 @@ const CriarUtilizador = () => {
 
   const handleAdicionaUtilizador = async () => {
     const novoUtilizador = { nome: nome, password: password, username: username };
-    //https://jsonplaceholder.typicode.com devolve apenas um id
+    
     const result = await createUser(novoUtilizador);
     if (result) {
       console.log(result.token);

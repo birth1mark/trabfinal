@@ -4,34 +4,28 @@ import requests from "../requests";
 
 const ValidarUtilizador = () => {
   const { users, setUsers } = useContext(UsersContext);
-  const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const { createUser } = requests;
+  const { validateUser } = requests;
 
   const handleAdicionaUtilizador = async () => {
-    const validarUtilizador = { nome, password, username };
+    const validarUtilizador = {password, username };
     //https://jsonplaceholder.typicode.com devolve apenas um id
-    const result = await createUser(novoUtilizador);
+    const result = await validateUser(validarUtilizador);
     if (result) {
-      const newUser = { id: result.id, ...novoUtilizador };
-
-      console.log(newUser);
-
-      setUsers([...users, newUser]);
-      setNome("");
-      setPassword("");
-      setUsername("");
+      console.log(result.token);
+      sessionStorage.setItem("Resposta_Utilizador",JSON.stringify(result));
+      
     }
   };
   return (
     <>
       <h2>Login</h2>
       <input
-        placeholder={"Nome"}
-        value={nome}
+        placeholder={"Username"}
+        value={username}
         onChange={(event) => {
-          setNome(event.target.value);
+          setUsername(event.target.value);
         }}
       />
       <input type="password"
@@ -41,13 +35,7 @@ const ValidarUtilizador = () => {
           setPassword(event.target.value);
         }}
       />
-      <input
-        placeholder={"Username"}
-        value={username}
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-      />
+      
       <button onClick={handleAdicionaUtilizador}>Entrar</button>
     </>
   );

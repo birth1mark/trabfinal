@@ -38,6 +38,11 @@ const requests = {
     // console.log(`${url}conta/registar`, "POST", user);
     return makeRequest(`${url}conta/registar`, "POST", user);
   },
+  validateUser: async (user) => {
+    console.log(user);
+    // console.log(`${url}conta/registar`, "POST", user);
+    return makeRequest(`${url}conta/login`, "POST", user);
+  },
   updateUser: async (id, user) => {
     return makeRequest(`${url}/${id}`, "PUT", user);
   },
