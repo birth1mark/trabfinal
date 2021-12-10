@@ -16,7 +16,7 @@ const CriarUtilizador = () => {
     const result = await createUser(novoUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Token_Berar",result.token);
+      sessionStorage.setItem("Token_Bearar",result.token);
 
     }
   };

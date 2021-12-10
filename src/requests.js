@@ -2,7 +2,7 @@ const url = process.env.REACT_APP_URL;
 
 const makeRequest = async (url, method = "GET", body = null) => {
 
-  const token=sessionStorage.getItem("Token_Berar");
+  const token=sessionStorage.getItem("Token_Bearar");
   console.log(token);
   const options = {
     method: method,
