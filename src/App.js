@@ -9,6 +9,7 @@ import { UsersContext } from "./user-context";
 import NovoUtilizador from "./features/NovoUtilizador";
 import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
+import CriarProduto from "./features/CriarProduto"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       
         <NovoUtilizador></NovoUtilizador>
         <ValidarUtilizador></ValidarUtilizador>
+        <CriarProduto ></CriarProduto>
     
     </div>
 

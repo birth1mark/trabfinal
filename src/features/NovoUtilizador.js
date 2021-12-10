@@ -16,7 +16,7 @@ const CriarUtilizador = () => {
     const result = await createUser(novoUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Resposta_Utilizador",JSON.stringify(result));
+      sessionStorage.setItem("Token_Berar",result.token);
 
     }
   };
@@ -45,7 +45,7 @@ const CriarUtilizador = () => {
         }}
       />
       <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button>
-       <Button onClick={handleAdicionaUtilizador} variant="outline-primary">Adiciona</Button>{' '}
+       <Button onClick={handleAdicionaUtilizador} variant="primary">Adiciona</Button>{' '}
     </>
   );
 };

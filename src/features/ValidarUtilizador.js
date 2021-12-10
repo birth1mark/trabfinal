@@ -13,7 +13,7 @@ const ValidarUtilizador = () => {
     const result = await validateUser(validarUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Resposta_Utilizador",JSON.stringify(result));
+      sessionStorage.setItem("Token_Berar",result.token);
       
     }
   };
