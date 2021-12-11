@@ -10,15 +10,18 @@ import NovoUtilizador from "./features/NovoUtilizador";
 import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
 import CriarProduto from "./features/CriarProduto"
+import ListarProdutos from "./features/ListarProdutos"
 
 function App() {
   return (
     <div className="App">
-      
-        <NovoUtilizador></NovoUtilizador>
-        <ValidarUtilizador></ValidarUtilizador>
-        <CriarProduto ></CriarProduto>
-    
+
+      <NovoUtilizador></NovoUtilizador>
+      <ValidarUtilizador></ValidarUtilizador>
+      <CriarProduto ></CriarProduto>
+      <br></br>
+      <ListarProdutos></ListarProdutos>
+
     </div>
 
   );

@@ -51,6 +51,12 @@ const requests = {
     // console.log(`${url}conta/registar`, "POST", user);
     return makeRequest(`${url}produto`, "POST", product);
   },
+  listProducts: async () => {
+    
+    
+    // console.log(`${url}conta/registar`, "POST", user);
+    return makeRequest(`${url}produto`, "GET");
+  },
   validateUser: async (user) => {
     console.log(user);
     // console.log(`${url}conta/registar`, "POST", user);
