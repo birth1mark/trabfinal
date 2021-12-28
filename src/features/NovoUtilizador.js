@@ -1,10 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import { useContext, useState } from "react";
-import { UsersContext } from "../user-context";
+import { UsersContext } from "../products-context";
 import requests from "../requests";
 
 const CriarUtilizador = () => {
-  const { users, setUsers } = useContext(UsersContext);
   const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -16,7 +15,8 @@ const CriarUtilizador = () => {
     const result = await createUser(novoUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Token_Bearar",result.token);
+      sessionStorage.setItem("Token_Bearer",result.token);
+      
 
     }
   };

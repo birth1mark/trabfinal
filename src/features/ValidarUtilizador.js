@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
-import { UsersContext } from "../user-context";
+import { UsersContext } from "../products-context";
 import requests from "../requests";
 
 const ValidarUtilizador = () => {
-  const { users, setUsers } = useContext(UsersContext);
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { validateUser } = requests;
@@ -13,7 +12,7 @@ const ValidarUtilizador = () => {
     const result = await validateUser(validarUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Token_Bearar",result.token);
+      sessionStorage.setItem("Token_Bearer",result.token);
       
     }
   };
