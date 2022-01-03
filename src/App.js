@@ -6,36 +6,64 @@ import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
 import CriarProduto from "./features/CriarProduto"
 import ListarProdutos from "./features/ListarProdutos"
+import { Routes, Route, Link, useNavigate, Router } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import Home from "./Home";
+
 
 function App() {
+  const [activeKey, setActiveKey] = useState("/");
+  const navigate = useNavigate();
 
-  const [token, setToken] = useState('');
+
   useEffect(() => {
-    const loggedInToken = sessionStorage.getItem("Token_Bearer");
-    console.log(loggedInToken);
-    if (loggedInToken) {
-      const token = loggedInToken;
-      setToken(token);
-      console.log(loggedInToken);
-    }
+    console.log("navegar");
+    navigate("/");
   }, []);
+
   return (
     <>
-      {
-        !token &&
-        <>
-          <NovoUtilizador></NovoUtilizador>
-          <ValidarUtilizador></ValidarUtilizador>
-        </>
-    }
-      {
-        token &&
-        <>
-          <CriarProduto ></CriarProduto>
-          <ListarProdutos></ListarProdutos>
-          
-        </>
-      }
+      <Nav
+        variant="pills"
+        activeKey={activeKey}
+        onSelect={(selectedKey) => {
+          setActiveKey(selectedKey);
+        }}
+      >
+        <Nav.Item>
+          <Nav.Link as={Link} eventKey="/" to="/">
+            Home
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} eventKey="/novo" to="/novo">
+            Novo Utilizador
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} eventKey="/validar" to="/validar">
+            Validar Utilizador
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} eventKey="/criarproduto" to="/criarproduto">
+            Criar Produto
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} eventKey="/listarprodutos" to="/listarprodutos">
+            Listar Produtos
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/novo" element={<NovoUtilizador />}></Route>
+        <Route path="/validar" element={<ValidarUtilizador />}></Route>
+        <Route path="/criarproduto" element={<CriarProduto />}></Route>
+        <Route path="/listarprodutos" element={<ListarProdutos />}></Route>
+      </Routes>
     </>
   )
 
