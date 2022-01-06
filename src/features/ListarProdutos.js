@@ -1,31 +1,35 @@
 import requests from "../requests";
 import Button from 'react-bootstrap/Button';
-import {ProductsContext} from "../products-context"
-import { useContext } from "react";
-import UserLoggedIn from "../loggedin-context";
+import { ProductsContext } from "../products-context"
+import { useContext, useState, useEffect } from "react";
+import TabelaProdutos from "../layout/TabelaProdutos";
 
-const { listProducts } = requests;
+
 const ListarProdutos = () => {
-    const { products, setProducts } = useContext(ProductsContext);
 
+    const [ products, setProducts ] = useState([]);
+    const { listProducts } = requests;
 
+    useEffect(() => {
+       
+        const fetchProducts = async () => {
+            const products = await listProducts();
+            setProducts(products ?? []);
+            console.log("contexto")
+            console.log(products);
+        };
+        fetchProducts();
+    }, [listProducts]);
 
-    const handleListarProdutos = async () => {
-        const result = await listProducts();
-        if (result) {
-
-            console.log(result);
-            setProducts(result);
-
-
-
-        }
-    };
     return (
         <>
+            <ProductsContext.Provider value={{ products, setProducts }}>
+                {/* <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button> */}
+                <Button variant="primary">Listar Produtos</Button>{' '}
+                <TabelaProdutos values={products}>
 
-            {/* <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button> */}
-            <Button onClick={handleListarProdutos} variant="primary">Listar Produtos</Button>{' '}
+                </TabelaProdutos>
+            </ProductsContext.Provider>
         </>
     );
 };

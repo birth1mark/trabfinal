@@ -1,21 +1,26 @@
 import { useContext, useState } from "react";
-import { UsersContext } from "../products-context";
+
 import requests from "../requests";
+import { IsLoggedIn } from "../loggedin-context";
 
 const ValidarUtilizador = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { validateUser } = requests;
+  const handleValidaUtilizador = async () => {
+    const validarUtilizador = { password, username };
 
-  const handleAdicionaUtilizador = async () => {
-    const validarUtilizador = {password, username };
     const result = await validateUser(validarUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Token_Bearer",result.token);
-      
+  
+
+
+
+      sessionStorage.setItem("Token_Bearer", result.token);
     }
   };
+  
   return (
     <>
       <h2>Login</h2>
@@ -33,8 +38,8 @@ const ValidarUtilizador = () => {
           setPassword(event.target.value);
         }}
       />
-      
-      <button onClick={handleAdicionaUtilizador}>Entrar</button>
+
+      <button onClick={handleValidaUtilizador}>Entrar</button>
     </>
   );
 };

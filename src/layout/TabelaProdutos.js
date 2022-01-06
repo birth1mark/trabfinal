@@ -3,18 +3,18 @@ const TabelaProdutos = ({ values }) => {
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Utilizador</th>
+            <th>categoria</th>
+            <th>nome</th>
+            <th>Preço</th>
           </tr>
         </thead>
         <tbody>
-          {values.map((produto, index) => {
+          {values.map((produto, indice) => {
             return (
-              <tr key={index}>
-                <td>{produto.name}</td>
-                <td>{produto.email}</td>
-                <td>{produto.username}</td>
+              <tr key={indice}>
+                <td>{produto.categoria}</td>
+                <td>{produto.nome}</td>
+                <td>{produto.preco}€</td>
               </tr>
             );
           })}
