@@ -1,27 +1,76 @@
+import { Table } from "react-bootstrap";
+import { useState, useContext } from "react";
+
 const TabelaProdutos = ({ values }) => {
-    return (
-      <table>
+  console.log("verificar context");
+  console.log(values);
+  const [categoria, setCategoria] = useState("");
+  const [nome, setNome] = useState("");
+  const [foundProducts, setFoundProducts] = useState(values);
+  console.log("aqui vai oo nome");
+  console.log(nome);
+  const [keyword, setKeyword] = useState('');
+
+  const filter = (e) => {
+    setKeyword(e.target.value);
+
+    if (keyword !== '') {
+      const results = values.filter((value) => {
+        return value.nome.toLowerCase().startsWith(keyword.toLowerCase());
+        // Use the toLowerCase() method to make it case-insensitive
+      });
+      setFoundProducts(results);
+    } else {
+      setFoundProducts(values);
+      // If the text field is empty, show all users
+    }
+
+    setNome(keyword);
+
+  };
+
+  return (
+
+    <>
+      <input
+        type="search"
+        value={nome}
+        onChange={filter}
+        className="input"
+        placeholder="Filter"
+        
+      />
+
+      <Table striped bordered responsive hover variant="dark">
         <thead>
           <tr>
-            <th>categoria</th>
-            <th>nome</th>
+            <th>Indice</th>
+            <th>Categoria</th>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th>Imagem</th>
             <th>Preço</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          {values.map((produto, indice) => {
+          {foundProducts.map((produto, indice) => {
             return (
               <tr key={indice}>
+                <td>{produto.id}</td>
                 <td>{produto.categoria}</td>
                 <td>{produto.nome}</td>
-                <td>{produto.preco}€</td>
+                <td>{produto.descricao}</td>
+                <td>{produto.imagemUrl}</td>
+                <td>{produto.preco}</td>
+                <td><input type="checkbox" onclick="get"></input></td>
               </tr>
             );
           })}
         </tbody>
-      </table>
-    );
-  };
-  
-  export default TabelaProdutos;
-  
+      </Table>
+    </>
+  );
+};
+
+export default TabelaProdutos;
