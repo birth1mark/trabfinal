@@ -9,21 +9,23 @@ const CriarUtilizador = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { createUser } = requests;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
  
- 
+
   const handleAdicionaUtilizador = async () => {
     const novoUtilizador = { nome: nome, password: password, username: username };
-    
+
     const result = await createUser(novoUtilizador);
     if (result) {
       console.log(result.token);
-      sessionStorage.setItem("Token_Bearer",result.token);
-  
+      sessionStorage.setItem("Token_Bearer", result.token);
       
+      setIsLoggedIn(true);
+
 
     }
   };
-  
+
   return (
     <>
       <h2>CriarUtilizador</h2>
@@ -49,7 +51,7 @@ const CriarUtilizador = () => {
         }}
       />
       <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button>
-       <Button onClick={handleAdicionaUtilizador} variant="primary">Adiciona</Button>{' '}
+      <Button onClick={handleAdicionaUtilizador} variant="primary">Adiciona</Button>{' '}
     </>
   );
 };

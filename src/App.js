@@ -9,24 +9,27 @@ import ListarProdutos from "./features/ListarProdutos"
 import { Routes, Route, Link, useNavigate, Router } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Home from "./Home";
-import { IsLoggedIn } from "./loggedin-context";
+import { IsLoggedInContext } from "./loggedin-context";
+import { Navbar } from "react-bootstrap";
 
 function App() {
   const [activeKey, setActiveKey] = useState("/");
   const navigate = useNavigate();
-  const isLoggedIn  = useContext(IsLoggedIn);
- 
+  const [isLoggedIn, setIsLoggedin] = useState(false);
+
   useEffect(() => {
     console.log("navegar");
     navigate("/");
   }, []);
 
-  
+
   return (
     <>
-      <ProductsContext.Provider>
-        <Nav
-          variant="pills"
+      <IsLoggedInContext.Provider value={{isLoggedIn, setIsLoggedin}} >
+        <Navbar
+          bg="dark"
+          variant="dark"
+
           activeKey={activeKey}
           onSelect={(selectedKey) => {
             setActiveKey(selectedKey);
@@ -34,7 +37,7 @@ function App() {
         >
           <Nav.Item>
             <Nav.Link as={Link} eventKey="/" to="/">
-              Home
+              Loja
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -47,17 +50,20 @@ function App() {
               Validar Utilizador
             </Nav.Link>
           </Nav.Item>
-         <Nav.Item>
-            <Nav.Link as={Link} eventKey="/criarproduto" to="/criarproduto">
-              Criar Produto
-            </Nav.Link>
-          </Nav.Item>
-         <Nav.Item>
-            <Nav.Link as={Link} eventKey="/listarprodutos" to="/listarprodutos">
-              Listar Produtos
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
+          {IsLoggedInContext.isLoggedIn && <>
+            <Nav.Item>
+              <Nav.Link as={Link} eventKey="/criarproduto" to="/criarproduto">
+                Criar Produto
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} eventKey="/listarprodutos" to="/listarprodutos">
+                Listar Produtos
+              </Nav.Link>
+            </Nav.Item>
+          </>
+          }
+        </Navbar>
 
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -66,7 +72,7 @@ function App() {
           <Route path="/criarproduto" element={<CriarProduto />}></Route>
           <Route path="/listarprodutos" element={<ListarProdutos />}></Route>
         </Routes>
-      </ProductsContext.Provider>
+      </IsLoggedInContext.Provider>
     </>
   )
 

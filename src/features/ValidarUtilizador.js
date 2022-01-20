@@ -1,28 +1,34 @@
 import { useContext, useState } from "react";
 
 import requests from "../requests";
-import { IsLoggedIn } from "../loggedin-context";
-
+import { IsLoggedInContext } from "../loggedin-context";
 const ValidarUtilizador = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { validateUser } = requests;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+
   const handleValidaUtilizador = async () => {
     const validarUtilizador = { password, username };
 
     const result = await validateUser(validarUtilizador);
     if (result) {
       console.log(result.token);
-  
-
-
-
       sessionStorage.setItem("Token_Bearer", result.token);
+     
+      setIsLoggedIn(true);
+      console.log("validei");
+
+
+
+
     }
   };
-  
+
   return (
     <>
+  
       <h2>Login</h2>
       <input
         placeholder={"Username"}
