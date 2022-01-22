@@ -2,6 +2,6 @@ import { createContext } from 'react';
 
 export const IsLoggedInContext = createContext({
     isLoggedIn: false,
-    setIsLoggedIn:(isLoggedIn)=>{this.isLoggedIn = isLoggedIn}
+    setIsLoggedIn:(isLoggedIn)=>{}
    
 });

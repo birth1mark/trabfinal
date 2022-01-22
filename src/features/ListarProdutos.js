@@ -24,7 +24,6 @@ const ListarProdutos = () => {
     return (
         <>
             <ProductsContext.Provider value={{ products, setProducts }}>
-                {/* <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button> */}
                 <Button variant="primary">Listar Produtos</Button>{' '}
                 <TabelaProdutos values={products}>
 

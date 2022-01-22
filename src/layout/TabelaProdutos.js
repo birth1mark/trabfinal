@@ -9,11 +9,10 @@ const TabelaProdutos = ({ values }) => {
   const [foundProducts, setFoundProducts] = useState(values);
   console.log("aqui vai oo nome");
   console.log(nome);
-  const [keyword, setKeyword] = useState('');
-
+  
   const filter = (e) => {
-    setKeyword(e.target.value);
-
+    const keyword = e.target.value;
+    console.log(keyword);
     if (keyword !== '') {
       const results = values.filter((value) => {
         return value.nome.toLowerCase().startsWith(keyword.toLowerCase());
@@ -38,6 +37,8 @@ const TabelaProdutos = ({ values }) => {
         onChange={filter}
         className="input"
         placeholder="Filter"
+        text=""
+        
         
       />
 
