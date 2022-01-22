@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, createContext, useState } from "react";
 
 import requests from "../requests";
 import { IsLoggedInContext } from "../loggedin-context";
@@ -16,9 +16,11 @@ const ValidarUtilizador = () => {
     if (result) {
       console.log(result.token);
       sessionStorage.setItem("Token_Bearer", result.token);
-     
       setIsLoggedIn(true);
+      
+     console.log(isLoggedIn);
       console.log("validei");
+      
 
 
 
@@ -27,6 +29,7 @@ const ValidarUtilizador = () => {
   };
 
   return (
+    <IsLoggedInContext.Provider  value={{ isLoggedIn, setIsLoggedIn }}>
     <>
   
       <h2>Login</h2>
@@ -47,6 +50,7 @@ const ValidarUtilizador = () => {
 
       <button onClick={handleValidaUtilizador}>Entrar</button>
     </>
+    </IsLoggedInContext.Provider>
   );
 };
 

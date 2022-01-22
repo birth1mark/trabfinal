@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ProductsContext } from "./products-context";
-import requests from "./requests";
+
 import NovoUtilizador from "./features/NovoUtilizador";
 import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
@@ -15,8 +14,8 @@ import { Navbar } from "react-bootstrap";
 function App() {
   const [activeKey, setActiveKey] = useState("/");
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedin] = useState(false);
-
+  const { isLoggedIn, setIsLoggedin } = useContext(IsLoggedInContext);
+  console.log(isLoggedIn);
   useEffect(() => {
     console.log("navegar");
     navigate("/");
@@ -25,7 +24,7 @@ function App() {
 
   return (
     <>
-      <IsLoggedInContext.Provider value={{isLoggedIn, setIsLoggedin}} >
+      <IsLoggedInContext.Provider value={{ isLoggedIn, setIsLoggedin }} >
         <Navbar
           bg="dark"
           variant="dark"
@@ -50,7 +49,7 @@ function App() {
               Validar Utilizador
             </Nav.Link>
           </Nav.Item>
-          {IsLoggedInContext.isLoggedIn && <>
+          {isLoggedIn && <>
             <Nav.Item>
               <Nav.Link as={Link} eventKey="/criarproduto" to="/criarproduto">
                 Criar Produto
