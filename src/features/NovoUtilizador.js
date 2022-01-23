@@ -2,15 +2,15 @@ import Button from 'react-bootstrap/Button';
 import { useContext, useState } from "react";
 
 import requests from "../requests";
-import { IsLoggedIn } from '../loggedin-context';
-
+import { IsLoggedInContext } from '../loggedin-context';
+import { useNavigate } from "react-router-dom";
 const CriarUtilizador = () => {
   const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { createUser } = requests;
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
+
 
   const handleAdicionaUtilizador = async () => {
     const novoUtilizador = { nome: nome, password: password, username: username };
@@ -19,7 +19,7 @@ const CriarUtilizador = () => {
     if (result) {
       console.log(result.token);
       sessionStorage.setItem("Token_Bearer", result.token);
-      
+
       setIsLoggedIn(true);
 
 

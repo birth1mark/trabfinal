@@ -4,7 +4,7 @@ import requests from "../requests";
 import { IsLoggedInContext } from "../loggedin-context";
 import { useNavigate } from "react-router-dom";
 const ValidarUtilizador = () => {
-  const {isLoggedIn,setIsLoggedIn}=useContext(IsLoggedInContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { validateUser } = requests;
@@ -20,20 +20,16 @@ const ValidarUtilizador = () => {
       sessionStorage.setItem("Token_Bearer", result.token);
       setIsLoggedIn(true);
       navigate("/");
-      
-
-
-
 
     }
-       
-    
-    
+
+
+
   }
 
   return (
     <>
-  
+
       <h2>Login</h2>
       <input
         placeholder={"Username"}
