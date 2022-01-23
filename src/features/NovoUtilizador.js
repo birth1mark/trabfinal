@@ -28,7 +28,7 @@ const CriarUtilizador = () => {
 
   return (
     <>
-      <h2>CriarUtilizador</h2>
+      <h3>CriarUtilizador</h3>
       <input
         placeholder={"Nome"}
         value={nome}
@@ -50,8 +50,8 @@ const CriarUtilizador = () => {
           setUsername(event.target.value);
         }}
       />
-      <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button>
-      <Button onClick={handleAdicionaUtilizador} variant="primary">Adiciona</Button>{' '}
+      
+      <Button onClick={handleAdicionaUtilizador} variant="dark">Adiciona</Button>{' '}
     </>
   );
 };

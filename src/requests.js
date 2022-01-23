@@ -52,9 +52,6 @@ const requests = {
     return makeRequest(`${url}produto`, "POST", product);
   },
   listProducts: async () => {
-    
-    
-    // console.log(`${url}conta/registar`, "POST", user);
     return makeRequest(`${url}produto`, "GET");
   },
   validateUser: async (user) => {
@@ -68,6 +65,13 @@ const requests = {
   deleteUser: async (id) => {
     return makeRequest(`${url}/${id}`, "DELETE");
   },
+  eliminarProduto: async (id) => {
+    return makeRequest(`${url}produto/${id}`, "DELETE");
+  },
+  atualizarProduto: async (produto) => {
+    
+    return makeRequest(`${url}produto/${produto.indice}`, "PUT",produto);
+   },
 };
 
 export default requests;

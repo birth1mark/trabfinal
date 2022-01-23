@@ -4,7 +4,7 @@ import NovoUtilizador from "./features/NovoUtilizador";
 import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
 import CriarProduto from "./features/CriarProduto"
-import ListarProdutos from "./features/ListarProdutos"
+import Manutencao from "./features/Manutencao"
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Home from "./Home";
@@ -62,8 +62,8 @@ function App() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} eventKey="/listarprodutos" to="/listarprodutos">
-                Listar Produtos
+              <Nav.Link as={Link} eventKey="/manutencao" to="/manutencao">
+                Manutençao de Produtos
               </Nav.Link>
             </Nav.Item>
           </>
@@ -75,7 +75,7 @@ function App() {
           <Route path="/novo" element={<NovoUtilizador />}></Route>
           <Route path="/validar" element={<ValidarUtilizador />}></Route>
           <Route path="/criarproduto" element={<CriarProduto />}></Route>
-          <Route path="/listarprodutos" element={<ListarProdutos />}></Route>
+          <Route path="/manutencao" element={<Manutencao />}></Route>
         </Routes>
       </IsLoggedInContext.Provider>
     </>

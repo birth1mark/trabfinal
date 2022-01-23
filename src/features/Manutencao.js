@@ -1,11 +1,13 @@
 import requests from "../requests";
-import Button from 'react-bootstrap/Button';
+
 import { ProductsContext } from "../products-context"
-import { useContext, useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import TabelaProdutos from "../layout/TabelaProdutos";
+import CriarProduto from "./CriarProduto";
+import EliminarProduto from "./EliminarProduto"
+import AtualizarProduto from "./AtualizarProduto";
 
-
-const ListarProdutos = () => {
+const Manutencao = () => {
 
     const [ products, setProducts ] = useState([]);
     const { listProducts } = requests;
@@ -24,13 +26,18 @@ const ListarProdutos = () => {
     return (
         <>
             <ProductsContext.Provider value={{ products, setProducts }}>
-                <Button variant="primary">Listar Produtos</Button>{' '}
+                
                 <TabelaProdutos values={products}>
 
                 </TabelaProdutos>
+                <br></br><CriarProduto></CriarProduto><br></br>
+
+                
+                <AtualizarProduto></AtualizarProduto>
+                <br></br><EliminarProduto></EliminarProduto><br></br>
             </ProductsContext.Provider>
         </>
     );
 };
 
-export default ListarProdutos;
+export default Manutencao;

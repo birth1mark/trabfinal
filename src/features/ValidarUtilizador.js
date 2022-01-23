@@ -3,6 +3,7 @@ import { useContext, createContext, useState } from "react";
 import requests from "../requests";
 import { IsLoggedInContext } from "../loggedin-context";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 const ValidarUtilizador = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
   const [password, setPassword] = useState("");
@@ -46,7 +47,7 @@ const ValidarUtilizador = () => {
         }}
       />
 
-      <button onClick={handleValidaUtilizador}>Entrar</button>
+      <Button onClick={handleValidaUtilizador} variant="dark" >Entrar</Button>
     </>
 
   );

@@ -6,44 +6,66 @@ const TabelaProdutos = ({ values }) => {
   console.log(values);
   const [categoria, setCategoria] = useState("");
   const [nome, setNome] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [foundProducts, setFoundProducts] = useState(values);
   console.log("aqui vai oo nome");
   console.log(nome);
-  
+
   const filter = (e) => {
 
     const keyword = e.target.value;
-    console.log(keyword);
-    if (keyword !== '') {
+
+    console.log("donde vem", e.target.name);
+
+
+    if (keyword) {
       const results = values.filter((value) => {
-        return value.nome.toLowerCase().startsWith(keyword.toLowerCase());
-        
+        if (e.target.name === "filtro2") {
+          return value.descricao.toLowerCase().includes(keyword.toLowerCase());
+        }
+        else {
+          return value.nome.toLowerCase().startsWith(keyword.toLowerCase());
+        }
+
+
       });
+
       setFoundProducts(results);
     } else {
       console.log("else");
       setFoundProducts(values);
       // If the text field is empty, show all users
     }
+    if (e.target.name === "filtro2") {
 
-    setNome(keyword);
+      setDescricao(keyword);
+    }
+    else {
+      setNome(keyword);
+    }
 
   };
-
   return (
 
     <>
       <input
+        name="filtro1"
         type="search"
         value={nome}
         onChange={filter}
         className="input"
-        placeholder="Filter"
-        text=""
-        
-        
-      />
+        placeholder="Filtro Nome"
 
+      />
+      <input
+        name="filtro2"
+        type="search"
+        value={descricao}
+        onChange={filter}
+        className="input"
+        placeholder="Filtro Descriçao"
+
+      />
       <Table striped bordered responsive hover variant="dark">
         <thead>
           <tr>
@@ -53,7 +75,6 @@ const TabelaProdutos = ({ values }) => {
             <th>Descricao</th>
             <th>Imagem</th>
             <th>Preço</th>
-            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -66,7 +87,7 @@ const TabelaProdutos = ({ values }) => {
                 <td>{values.descricao}</td>
                 <td>{values.imagemUrl}</td>
                 <td>{values.preco}</td>
-                <td><input type="checkbox" onclick="get"></input></td>
+               
               </tr>
             );
           })}

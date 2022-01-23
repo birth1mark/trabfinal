@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
-import { useContext, useState } from "react";
-import { UsersContext } from "../products-context";
+import { useState } from "react";
+
 import requests from "../requests";
 
 const CriarProduto = () => {
@@ -23,7 +23,7 @@ const CriarProduto = () => {
   };
   return (
     <>
-      <h2>Criar Produto</h2>
+      <h3>Criar Produto</h3>
       <input
         placeholder={"Categoria"}
         value={categoria}
@@ -38,13 +38,7 @@ const CriarProduto = () => {
           setDescricao(event.target.value);
         }}
       />
-      {/* <input
-          placeholder={"Id"}
-          value={id}
-          onChange={(event) => {
-            setId(event.target.value);
-          }}
-        /> */}
+     
       <input
         placeholder={"Imagem Url"}
         value={imagemUrl}
@@ -66,8 +60,8 @@ const CriarProduto = () => {
           setPreco(event.target.value);
         }}
       />
-      {/* <button onClick={handleAdicionaUtilizador}>Adiciona Utilizador</button> */}
-      <Button onClick={handleCriarProduto} variant="primary">Adicionar Produto</Button>{' '}
+      
+      <Button onClick={handleCriarProduto} variant="dark">Adicionar Produto</Button>{' '}
     </>
   );
 };
