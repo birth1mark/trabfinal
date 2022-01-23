@@ -11,15 +11,17 @@ const TabelaProdutos = ({ values }) => {
   console.log(nome);
   
   const filter = (e) => {
+
     const keyword = e.target.value;
     console.log(keyword);
     if (keyword !== '') {
       const results = values.filter((value) => {
         return value.nome.toLowerCase().startsWith(keyword.toLowerCase());
-        // Use the toLowerCase() method to make it case-insensitive
+        
       });
       setFoundProducts(results);
     } else {
+      console.log("else");
       setFoundProducts(values);
       // If the text field is empty, show all users
     }
@@ -55,15 +57,15 @@ const TabelaProdutos = ({ values }) => {
           </tr>
         </thead>
         <tbody>
-          {foundProducts.map((produto, indice) => {
+          {foundProducts.map((values, indice) => {
             return (
               <tr key={indice}>
-                <td>{produto.id}</td>
-                <td>{produto.categoria}</td>
-                <td>{produto.nome}</td>
-                <td>{produto.descricao}</td>
-                <td>{produto.imagemUrl}</td>
-                <td>{produto.preco}</td>
+                <td>{values.id}</td>
+                <td>{values.categoria}</td>
+                <td>{values.nome}</td>
+                <td>{values.descricao}</td>
+                <td>{values.imagemUrl}</td>
+                <td>{values.preco}</td>
                 <td><input type="checkbox" onclick="get"></input></td>
               </tr>
             );

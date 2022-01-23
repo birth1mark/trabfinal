@@ -8,24 +8,25 @@ import ListarProdutos from "./features/ListarProdutos"
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Home from "./Home";
-
+import { IsLoggedInContext } from "./loggedin-context";
 import { Navbar } from "react-bootstrap";
 
 function App() {
   const [activeKey, setActiveKey] = useState("/");
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  
   useEffect(() => {
-    
+
     console.log("navegar");
     navigate("/");
-    
+
   }, []);
 
 
   return (
     <>
+      <IsLoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Navbar
           bg="dark"
           variant="dark"
@@ -40,17 +41,21 @@ function App() {
               Loja
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} eventKey="/novo" to="/novo">
-              Novo Utilizador
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} eventKey="/validar" to="/validar">
-              Validar Utilizador
-            </Nav.Link>
-          </Nav.Item>
-          {sessionStorage.getItem("Token_Bearer") && <>
+
+          {!isLoggedIn && <>
+            <Nav.Item>
+              <Nav.Link as={Link} eventKey="/novo" to="/novo">
+                Novo Utilizador
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} eventKey="/validar" to="/validar">
+                Validar Utilizador
+              </Nav.Link>
+
+            </Nav.Item>
+          </>}
+          {isLoggedIn && <>
             <Nav.Item>
               <Nav.Link as={Link} eventKey="/criarproduto" to="/criarproduto">
                 Criar Produto
@@ -72,7 +77,7 @@ function App() {
           <Route path="/criarproduto" element={<CriarProduto />}></Route>
           <Route path="/listarprodutos" element={<ListarProdutos />}></Route>
         </Routes>
-     
+      </IsLoggedInContext.Provider>
     </>
   )
 

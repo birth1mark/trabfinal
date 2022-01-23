@@ -2,13 +2,14 @@ import { useContext, createContext, useState } from "react";
 
 import requests from "../requests";
 import { IsLoggedInContext } from "../loggedin-context";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const ValidarUtilizador = () => {
+  const {isLoggedIn,setIsLoggedIn}=useContext(IsLoggedInContext);
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const { validateUser } = requests;
 
-  
+  const navigate = useNavigate();
 
   const handleValidaUtilizador = async () => {
     const validarUtilizador = { password, username };
@@ -17,7 +18,8 @@ const ValidarUtilizador = () => {
     if (result) {
       console.log(result.token);
       sessionStorage.setItem("Token_Bearer", result.token);
-      
+      setIsLoggedIn(true);
+      navigate("/");
       
 
 
