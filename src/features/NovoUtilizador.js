@@ -10,17 +10,18 @@ const CriarUtilizador = () => {
   const [username, setUsername] = useState("");
   const { createUser } = requests;
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
-
+  const navigate = useNavigate();
 
   const handleAdicionaUtilizador = async () => {
     const novoUtilizador = { nome: nome, password: password, username: username };
-
+    
     const result = await createUser(novoUtilizador);
     if (result) {
       console.log(result.token);
       sessionStorage.setItem("Token_Bearer", result.token);
 
       setIsLoggedIn(true);
+      navigate("/");
 
 
     }

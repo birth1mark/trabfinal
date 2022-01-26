@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import { useState } from "react";
-
+import { UsersContext } from "../products-context";
 import requests from "../requests";
 
 const CriarProduto = () => {

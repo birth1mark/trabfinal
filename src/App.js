@@ -5,6 +5,7 @@ import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
 import CriarProduto from "./features/CriarProduto"
 import Manutencao from "./features/Manutencao"
+import Encomenda from "./features/Encomenda";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Home from "./Home";
@@ -66,6 +67,7 @@ function App() {
                 Manutençao de Produtos
               </Nav.Link>
             </Nav.Item>
+            
           </>
           }
         </Navbar>
@@ -76,6 +78,7 @@ function App() {
           <Route path="/validar" element={<ValidarUtilizador />}></Route>
           <Route path="/criarproduto" element={<CriarProduto />}></Route>
           <Route path="/manutencao" element={<Manutencao />}></Route>
+         
         </Routes>
       </IsLoggedInContext.Provider>
     </>
