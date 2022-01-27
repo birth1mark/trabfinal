@@ -2,7 +2,7 @@ import requests from "../requests";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { ProductsContext } from "../products-context"
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import TabelaProdutos from "../layout/TabelaProdutos";
 
 

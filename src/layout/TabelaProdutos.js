@@ -64,8 +64,8 @@ const TabelaProdutos = ({values}) => {
                 <td>{product.categoria}</td>
                 <td>{product.nome}</td>
                 <td>{product.descricao}</td>
-                <td><img src={product.imagemUrl} style={{height: 50, width: 50}}/></td>
-                <td>{product.preco}</td>
+                <td><img src={product.imagemUrl} style={{height: 50, width: 50}} alt=""/></td>
+                <td>{product.preco}€</td>
                
               </tr>
               

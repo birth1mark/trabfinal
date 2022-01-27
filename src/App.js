@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import NovoUtilizador from "./features/NovoUtilizador";
 import './App.css';
 import ValidarUtilizador from "./features/ValidarUtilizador";
-import CriarProduto from "./features/CriarProduto"
 import Manutencao from "./features/Manutencao"
 import Encomenda from "./features/Encomenda";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
@@ -18,6 +17,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+
+    if (sessionStorage.getItem("Token_Bearer")){
+      setIsLoggedIn(true);
+
+    }
+    
 
     console.log("navegar");
     navigate("/");

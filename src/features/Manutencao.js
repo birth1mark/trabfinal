@@ -1,7 +1,7 @@
 import requests from "../requests";
 
 import { ProductsContext } from "../products-context"
-import {useState, useEffect, useContext } from "react";
+import {useState, useEffect } from "react";
 import TabelaProdutos from "../layout/TabelaProdutos";
 import CriarProduto from "./CriarProduto";
 import EliminarProduto from "./EliminarProduto"
