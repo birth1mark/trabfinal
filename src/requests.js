@@ -72,6 +72,10 @@ const requests = {
     
     return makeRequest(`${url}produto/${produto.indice}`, "PUT",produto);
    },
+   enviarEncomenda:async(encomenda) => {
+
+    return makeRequest(`${url}encomenda`, "POST", encomenda);
+   }
 };
 
 export default requests;

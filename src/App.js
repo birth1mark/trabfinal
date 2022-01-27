@@ -57,17 +57,17 @@ function App() {
             </Nav.Item>
           </>}
           {isLoggedIn && <>
-            <Nav.Item>
-              <Nav.Link as={Link} eventKey="/criarproduto" to="/criarproduto">
-                Criar Produto
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
+             <Nav.Item>
               <Nav.Link as={Link} eventKey="/manutencao" to="/manutencao">
                 Manutençao de Produtos
               </Nav.Link>
             </Nav.Item>
-            
+
+            <Nav.Item>
+              <Nav.Link as={Link} eventKey="/encomenda" to="/encomenda">
+                Fazer Encomenda
+              </Nav.Link>
+            </Nav.Item>
           </>
           }
         </Navbar>
@@ -76,8 +76,8 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/novo" element={<NovoUtilizador />}></Route>
           <Route path="/validar" element={<ValidarUtilizador />}></Route>
-          <Route path="/criarproduto" element={<CriarProduto />}></Route>
-          <Route path="/manutencao" element={<Manutencao />}></Route>
+         <Route path="/manutencao" element={<Manutencao />}></Route>
+          <Route path="/encomenda" element={<Encomenda />}></Route>
          
         </Routes>
       </IsLoggedInContext.Provider>

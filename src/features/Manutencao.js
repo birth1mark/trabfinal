@@ -1,7 +1,7 @@
 import requests from "../requests";
 
 import { ProductsContext } from "../products-context"
-import {useState, useEffect } from "react";
+import {useState, useEffect, useContext } from "react";
 import TabelaProdutos from "../layout/TabelaProdutos";
 import CriarProduto from "./CriarProduto";
 import EliminarProduto from "./EliminarProduto"
@@ -9,14 +9,14 @@ import AtualizarProduto from "./AtualizarProduto";
 
 const Manutencao = () => {
 
-    const [ products, setProducts ] = useState([]);
+    const [products, setProducts ] = useState([]);
     const { listProducts } = requests;
 
     useEffect(() => {
        
         const fetchProducts = async () => {
-            const products = await listProducts();
-            setProducts(products ?? []);
+            const productsLer = await listProducts();
+            setProducts(productsLer ?? []);
             console.log("contexto")
             console.log(products);
         };

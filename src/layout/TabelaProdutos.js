@@ -1,50 +1,27 @@
 import { Table } from "react-bootstrap";
 import { useState, useContext } from "react";
+import { ProductsContext } from "../products-context";
 
-const TabelaProdutos = ({ values }) => {
-  console.log("verificar context");
-  console.log(values);
-  const [categoria, setCategoria] = useState("");
+const TabelaProdutos = ({values}) => {
+  
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [foundProducts, setFoundProducts] = useState(values);
-  console.log("aqui vai oo nome");
-  console.log(nome);
+  const {products} = useContext(ProductsContext);
+  console.log("A listar da tabela Produtos")
+  console.log(values);
+  
+ 
 
-  const filter = (e) => {
-
-    const keyword = e.target.value;
-
-    console.log("donde vem", e.target.name);
-
-
-    if (keyword) {
-      const results = values.filter((value) => {
-        if (e.target.name === "filtro2") {
-          return value.descricao.toLowerCase().includes(keyword.toLowerCase());
-        }
-        else {
-          return value.nome.toLowerCase().startsWith(keyword.toLowerCase());
-        }
-
-
-      });
-
-      setFoundProducts(results);
-    } else {
-      console.log("else");
-      setFoundProducts(values);
-      // If the text field is empty, show all users
-    }
-    if (e.target.name === "filtro2") {
-
-      setDescricao(keyword);
-    }
-    else {
-      setNome(keyword);
-    }
-
-  };
+  const filteredProducts=()=>{
+    return products
+    .filter(product=>{
+      return product.nome.includes(nome)
+    })
+    .filter(product=>{
+      return product.descricao.includes(descricao)
+    });
+    ;
+  }
   return (
 
     <>
@@ -52,8 +29,9 @@ const TabelaProdutos = ({ values }) => {
         name="filtro1"
         type="search"
         value={nome}
-        onChange={filter}
-        className="input"
+        onChange={(event) => {
+          setNome(event.target.value)}}
+        
         placeholder="Filtro Nome"
 
       />
@@ -61,8 +39,8 @@ const TabelaProdutos = ({ values }) => {
         name="filtro2"
         type="search"
         value={descricao}
-        onChange={filter}
-        className="input"
+        onChange={(event) => {
+          setDescricao(event.target.value)}}
         placeholder="Filtro Descriçao"
 
       />
@@ -78,17 +56,19 @@ const TabelaProdutos = ({ values }) => {
           </tr>
         </thead>
         <tbody>
-          {foundProducts.map((values, indice) => {
+          {filteredProducts().map((product, indice) => {
             return (
+              
               <tr key={indice}>
-                <td>{values.id}</td>
-                <td>{values.categoria}</td>
-                <td>{values.nome}</td>
-                <td>{values.descricao}</td>
-                <td>{values.imagemUrl}</td>
-                <td>{values.preco}</td>
+                <td>{product.id}</td>
+                <td>{product.categoria}</td>
+                <td>{product.nome}</td>
+                <td>{product.descricao}</td>
+                <td><img src={product.imagemUrl} style={{height: 50, width: 50}}/></td>
+                <td>{product.preco}</td>
                
               </tr>
+              
             );
           })}
         </tbody>
