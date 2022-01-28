@@ -20,12 +20,13 @@ const Encomenda = () => {
 
         const feed = { "produtoId": Number( produtoId), "quantidade": Number(quantidade) };
 
-        encomenda.push(feed);
+        //encomenda.push(feed);
+        setEncomenda([...encomenda,feed]);
 
     };
     const handleEnviarEncomenda = async () => {
         console.log("encomenda", encomenda);
-        const result = await enviarEncomenda(encomenda);
+        const result = await enviarEncomenda({linhas:encomenda});
     if (result) {
       console.log(result);
       

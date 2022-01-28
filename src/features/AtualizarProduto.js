@@ -1,6 +1,7 @@
 import { useState } from "react";
 import requests from "../requests";
 import { Button } from "react-bootstrap";
+import TabelaProdutos from "../layout/TabelaProdutos";
 
 const AtualizarProduto = () => {
   const [indice, setIndice] = useState("");
@@ -24,6 +25,7 @@ const AtualizarProduto = () => {
     const result = await atualizarProduto(produto);
     if (result) {
       console.log(result);
+      
     }
   };
   return (

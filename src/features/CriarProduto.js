@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import requests from "../requests";
+import { ProductsContext } from '../products-context';
 
 const CriarProduto = () => {
   
@@ -11,12 +12,13 @@ const CriarProduto = () => {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState("");
   const { createProduct } = requests;
-
+const {products, setProducts} = useContext(ProductsContext);
   const handleCriarProduto = async () => {
     const novoProduto = { categoria: categoria, descricao: descricao, id: 0, imagemUrl: imagemUrl, nome: nome, preco: preco };
     const result = await createProduct(novoProduto);
     if (result) {
       console.log(result);
+      setProducts([...products,result])
 
 
     }
