@@ -70,7 +70,7 @@ const requests = {
   },
   atualizarProduto: async (produto) => {
     
-    return makeRequest(`${url}produto/${produto.indice}`, "PUT",produto);
+    return makeRequest(`${url}produto/${produto.id}`, "PUT",produto);
    },
    enviarEncomenda:async(encomenda) => {
 
