@@ -1,26 +1,35 @@
 import { Button } from "react-bootstrap";
 import requests from "../requests";
 import { useState } from "react";
-
+import { ProductsContext } from "../products-context";
+import { useContext } from "react";
+import Select from "../layout/Select";
 
 const EliminarProduto = () => {
+    const {products, setProducts} = useContext(ProductsContext);
     const { eliminarProduto } = requests;
     const [indice, setIndice] = useState("");
+    const [produto, setProduto] = useState("");
     const handleEliminarProduto = async () => {
-        const result = await eliminarProduto(indice);
-        if (result) {
-            console.log(result);
+        if(produto){
+        const result = await eliminarProduto(produto.id);
+        setProducts(products.filter((prod) => prod.id !== produto.id));
+        setProduto();
+        
         }
+        
     }
     return (
         <>
-            <input
-                placeholder="Id a Eliminar"
-                value={indice}
-                onChange={(event) => {
-                    setIndice(event.target.value);
-                }}
-            />
+            <Select
+        onChange={(event) => {
+          setProduto(
+            products.find((prod) => prod.id == event.target.value)
+          );
+        }}
+        selectedValue={produto?.id ?? ""}
+        values={products}
+      />
             <Button variant="dark" onClick={handleEliminarProduto}>
                 Eliminar Produto
             </Button>

@@ -6,7 +6,7 @@ import { ProductsContext } from "../products-context";
 
 const AtualizarProduto = () => {
   const { atualizarProduto } = requests;
-  const {products, setProducts} = useContext(ProductsContext);
+  const { products, setProducts } = useContext(ProductsContext);
   const [produto, setProduto] = useState("");
   const handleChange = (event) => {
     setProduto({ ...produto, [event.target.name]: event.target.value });
@@ -16,7 +16,13 @@ const AtualizarProduto = () => {
     const result = await atualizarProduto(produto);
     if (result) {
       console.log(result);
-
+      const index = products.findIndex((produto) => {
+        return produto.id === result.id;
+      });
+      let cloneProducts = [...products];
+      cloneProducts[index] = { id: result, ...produto };
+      setProducts(cloneProducts);
+      setProduto();
     }
   };
   return (
@@ -31,7 +37,7 @@ const AtualizarProduto = () => {
         selectedValue={produto?.id ?? ""}
         values={products}
       />
-      
+
       <input
         placeholder={"Nome"}
         value={produto?.nome ?? ""}
@@ -54,7 +60,7 @@ const AtualizarProduto = () => {
       <input
         placeholder={"imageUrl"}
         value={produto?.imagemUrl ?? ""}
-        name={"imageUrl"}
+        name={"imagemUrl"}
         onChange={handleChange}
       />
 
@@ -63,7 +69,7 @@ const AtualizarProduto = () => {
         value={produto?.preco ?? ""}
         name={"preco"}
         onChange={handleChange}
-        
+
       />
 
       <Button variant="dark" onClick={handleAtualizaProduto}>
