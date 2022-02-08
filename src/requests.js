@@ -32,6 +32,7 @@ const makeRequest = async (url, method = "GET", body = null) => {
     }
   } catch (err) {
     alert(err.message);
+    return undefined;
   }
 };
 
