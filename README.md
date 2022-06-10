@@ -2,6 +2,7 @@
 
 Made by Pedro Ribeiro
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Do not use this project without permission.
 
 ## Available Scripts
 
